@@ -11,7 +11,7 @@ C_Max = 5000000                       # capitale massimo
 
 δ = 10                            # somma fissa da scommettere
 
-P_max = 50000                      # numero massimo di partite giocate
+P_max = 50                    # numero massimo di partite giocate
 
 '''3.1 SCENARIO
 Un giocatore d’azzardo parte con un capitale iniziale C_0 e gioca una serie di partite indipendenti con
@@ -26,21 +26,28 @@ Il giocatore continua a giocare fino a quando:
 andrà simulato il risultato della singola partita e aggiornato il capitale. Si imposti un numero
 massimo di partite (per evitare cicli infiniti) di almeno 50.000 partite.'''
 
-def simulate_game(p, C_0, C_Max, δ, P_max):
+#stampa esito partita, capitale attuale e vinto ad ogni partita
+
+def play_game():
     C = C_0
-    for partita in range(P_max):
-        if C >= C_Max:
-            print(f"Successo! Capitale raggiunto: {C} dopo {partita} partite.")
-            return C
-        elif C <= 0:
-            print(f"Rovina! Capitale esaurito dopo {partita} partite.")
-            return C
+    partita = 0
+
+    while C > 0 and C < C_Max and partita < P_max:
+        partita += 1
+        if random.random() < p:
+            C += δ
+            print(f"Partita {partita}: Hai vinto! Capitale attuale: {C} (Vinto: {δ})")
         else:
-            if random.random() < p:
-                C += δ  # Vincita
-            else:
-                C -= δ  # Perdita
-    print(f"Numero massimo di partite raggiunto. Capitale finale: {C}.")
+            C -= δ
+            print(f"Partita {partita}: Hai perso! Capitale attuale: {C} (Perso: {δ})")
+
+    if C >= C_Max:
+        print(f"Hai raggiunto il capitale massimo di {C_Max} in {partita} partite!")
+    elif C <= 0:
+        print(f"Hai perso tutto il capitale in {partita} partite.")
+    else:
+        print(f"Hai raggiunto il numero massimo di partite ({P_max}) con un capitale di {C}.")
+        return C
     return C
-final_capital = simulate_game(p, C_0, C_Max, δ, P_max)
-print(f"Capitale finale del giocatore: {final_capital}")
+final_capital = play_game()
+print(f"Capitale finale: {final_capital}")
