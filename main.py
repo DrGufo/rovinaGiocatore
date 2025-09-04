@@ -7,7 +7,7 @@ p = generate_random_number()        # probabilità di vincere la partita
 
 C_0 = 500                           # capitale iniziale
 
-C_Max = 1500                       # capitale massimo
+C_Max = 5000000                       # capitale massimo
 
 δ = 10                            # somma fissa da scommettere
 
