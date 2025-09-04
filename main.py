@@ -36,4 +36,4 @@ def play_game():
     return C
 
 final_capital = play_game()
-print(f"Capitale finale: {final_capital}")
+print(f"Capitale finale: {final_capital}"
