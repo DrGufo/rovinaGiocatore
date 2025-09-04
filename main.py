@@ -4,7 +4,7 @@ def generate_random_number():
     return round(random.random(), 1)
 
 C_0 = 500                           # capitale iniziale
-C_Max = 5000000                     # capitale massimo
+C_Max = 500000                     # capitale massimo
 δ = 10                              # somma fissa da scommettere
 P_max = 50000                          # numero massimo di partite giocate
 
