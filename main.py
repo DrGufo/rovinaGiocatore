@@ -16,13 +16,13 @@ def play_game():
 
     while C > 0 and C < C_Max and partita < P_max:
         partita += 1
-        # Usa solo p come indicatore di probabilità di vincere
-        if random.random() < p:
+        win_prob = p  # probabilità di vincita per questa partita
+        if random.random() < win_prob:
             C += δ
-            print(f"Partita {partita}: Hai vinto! Capitale attuale: {C} (Vinto: {δ})")
+            print(f"Partita {partita}: Hai vinto! Capitale attuale: {C} (Vinto: {δ}) | Probabilità di vincita: {win_prob:.1f}")
         else:
             C -= δ
-            print(f"Partita {partita}: Hai perso! Capitale attuale: {C} (Perso: {δ})")
+            print(f"Partita {partita}: Hai perso! Capitale attuale: {C} (Perso: {δ}) | Probabilità di vincita: {win_prob:.1f}")
 
     if C >= C_Max:
         print(f"Hai raggiunto il capitale massimo di {C_Max} in {partita} partite!")
