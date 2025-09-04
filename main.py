@@ -3,8 +3,6 @@ import random
 def generate_random_number():
     return round(random.random(), 1)
 
-p = generate_random_number()        # probabilità di vincere la partita
-
 C_0 = 500                           # capitale iniziale
 C_Max = 5000000                     # capitale massimo
 δ = 10                              # somma fissa da scommettere
@@ -16,7 +14,7 @@ def play_game():
 
     while C > 0 and C < C_Max and partita < P_max:
         partita += 1
-        win_prob = p  # probabilità di vincita per questa partita
+        win_prob = generate_random_number()  # probabilità di vincita per questa partita (rigenerata ogni volta)
         if random.random() < win_prob:
             C += δ
             print(f"Partita {partita}: Hai vinto! Capitale attuale: {C} (Vinto: {δ}) | Probabilità di vincita: {win_prob:.1f}")
