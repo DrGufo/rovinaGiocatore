@@ -1,82 +1,82 @@
 # Rovina del Giocatore
 
-Simulazione della **rovina del giocatore d'azzardo** con due approcci:
+Questo progetto presenta una simulazione del problema della **rovina del giocatore d'azzardo**, sviluppata con due modalita complementari:
 
-- `main.py`: simulazione singola, passo-passo, con output testuale.
-- `main.ipynb`: analisi Monte Carlo con grafici e stime statistiche.
+- `main.py`: esecuzione di una simulazione singola con tracciamento testuale dell'evoluzione del capitale.
+- `main.ipynb`: studio Monte Carlo su piu simulazioni, con analisi statistica e visualizzazioni.
 
-## Obiettivo del progetto
+## Finalita
 
-Studiare il comportamento del capitale di un giocatore che scommette una somma fissa ad ogni partita, fino a uno di questi eventi:
+L'obiettivo e analizzare l'andamento del capitale di un giocatore che effettua puntate a importo fisso, fino al verificarsi di una delle seguenti condizioni:
 
-- **Rovina**: il capitale arriva a `0`.
-- **Successo**: il capitale raggiunge una soglia massima `CMax`.
-- **Stop tecnico**: viene raggiunto il numero massimo di partite.
+- **Rovina**: il capitale raggiunge il valore `0`.
+- **Successo**: il capitale raggiunge la soglia `CMax`.
+- **Arresto della simulazione**: viene raggiunto il limite massimo di partite prefissato.
 
-## Struttura del progetto
+## Struttura del repository
 
 ```text
 rovinaGiocatore/
-	main.py       # simulazione singola da terminale
-	main.ipynb    # simulazioni Monte Carlo + analisi e grafici
-	README.md
+  main.py
+  main.ipynb
+  README.md
 ```
 
 ## Requisiti
 
-Python `3.10+` consigliato.
+Si raccomanda l'utilizzo di Python `3.10` o versione successiva.
 
-Librerie usate nel notebook:
+Dipendenze principali:
 
 - `numpy`
 - `pandas`
 - `plotly`
 - `statsmodels`
 
-Installazione dipendenze:
+Installazione:
 
 ```bash
 pip install numpy pandas plotly statsmodels
 ```
 
-## Come eseguire
+## Esecuzione
 
-### 1) Script Python (`main.py`)
+### Script Python
 
-Esegue una simulazione singola con log di ogni partita.
+Per eseguire la simulazione singola da terminale:
 
 ```bash
 python main.py
 ```
 
-Nel file puoi modificare i parametri principali:
+Parametri principali configurabili nel file:
 
-- `C_0`: capitale iniziale
-- `C_Max`: capitale obiettivo
-- `delta`: puntata fissa per partita (nel codice e indicata come `δ`)
-- `P_max`: numero massimo di partite
+- `C_0`: capitale iniziale.
+- `C_Max`: soglia di capitale per il successo.
+- `δ` (delta): importo fisso scommesso a ogni partita.
+- `P_max`: numero massimo di partite consentite.
 
-### 2) Notebook (`main.ipynb`)
+### Notebook
 
-Apri il notebook in VS Code o Jupyter e lancia le celle in ordine.
+Aprire `main.ipynb` in VS Code o Jupyter ed eseguire le celle in sequenza.
 
-Nel notebook trovi:
+Il notebook include:
 
-- simulazione Monte Carlo su piu giocatori;
+- simulazione Monte Carlo su un insieme di giocatori;
 - stima empirica della probabilita di rovina;
-- confronto con probabilita teorica media;
-- tempi attesi di rovina/successo;
-- istogrammi e scatter plot con regressione lineare.
+- confronto con la probabilita teorica media;
+- stima dei tempi medi di rovina e successo;
+- analisi grafica (distribuzioni, scatter plot, regressione lineare).
 
 ## Note metodologiche
 
-- In `main.py` la probabilita di vincita viene randomizzata ad ogni partita.
-- In `main.ipynb` la probabilita `p` viene randomizzata ad ogni simulazione Monte Carlo.
-- I risultati possono cambiare tra diverse esecuzioni a causa della componente casuale.
+- In `main.py` la probabilita di vincita viene campionata a ogni partita.
+- In `main.ipynb` la probabilita `p` viene campionata a ogni simulazione Monte Carlo.
+- I risultati possono variare tra esecuzioni diverse, in quanto il processo e stocastico.
 
-## Miglioramenti possibili
+## Sviluppi futuri
 
-- Impostare un `seed` per rendere i risultati riproducibili.
-- Salvare grafici e metriche in file (`.csv`, `.png`, `.html`).
-- Aggiungere test automatici sulle funzioni di simulazione.
-- Separare la logica in moduli Python riutilizzabili.
+- introdurre un `seed` per garantire la riproducibilita sperimentale;
+- esportare risultati e grafici in formati standard (`.csv`, `.png`, `.html`);
+- aggiungere test automatici per le funzioni principali;
+- organizzare il codice in moduli Python separati per favorire riuso e manutenibilita.
