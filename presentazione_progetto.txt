@@ -1,37 +1,41 @@
-PRESENTAZIONE ORALE DEL PROGETTO: ROVINA DEL GIOCATORE
+ROVINA DEL GIOCATORE
 
-Buongiorno a tutti. Oggi presentiamo il nostro progetto sviluppato nel notebook main.ipynb, dedicato al problema della rovina del giocatore. L’obiettivo dell’analisi è studiare l’evoluzione del capitale di un giocatore nel tempo, fino al verificarsi di uno dei due esiti possibili: la rovina, quando il capitale si annulla, oppure il successo, quando viene raggiunto un capitale obiettivo prefissato.
+Questo progetto analizza il classico problema della rovina del giocatore attraverso il notebook main.ipynb. L’obiettivo è studiare l’evoluzione del capitale di un giocatore nel tempo fino al verificarsi di uno dei due esiti principali: la rovina, quando il capitale raggiunge lo zero, oppure il successo, quando viene raggiunto un capitale obiettivo prefissato.
 
-Il notebook non si limita a considerare una singola simulazione, ma osserva il fenomeno in una prospettiva più ampia. Per questo vengono generati numerosi percorsi del capitale, successivamente confrontati con la teoria e infine analizzati tramite grafici e strumenti statistici. Il progetto integra quindi aspetti di probabilità, statistica e visualizzazione dei dati.
+Il notebook non si limita a una singola simulazione, ma considera il fenomeno in una prospettiva statistica più ampia. Vengono infatti generati numerosi percorsi del capitale, poi confrontati con la teoria e infine analizzati attraverso grafici e misure statistiche. Il progetto unisce quindi probabilità, statistica e visualizzazione dei dati.
 
-All’inizio vengono importate le librerie principali. Numpy è utilizzato per i calcoli numerici, pandas per l’organizzazione dei dati, plotly per la costruzione di grafici interattivi e statsmodels per l’analisi di regressione lineare. Il notebook è quindi strutturato fin dall’inizio per consentire sia l’elaborazione numerica sia l’interpretazione statistica dei risultati.
+## Struttura del notebook
 
-La prima funzione rilevante è generate_random_number. Questa funzione genera un numero casuale compreso tra 0 e 1 e, nel contesto del progetto, rappresenta la probabilità di vincita. In questo modo ogni simulazione può differire dalla precedente, poiché l’evoluzione del sistema dipende da un elemento di casualità.
+Il notebook inizia con l’importazione delle librerie principali. Numpy viene utilizzato per i calcoli numerici, pandas per l’organizzazione dei dati, plotly per la costruzione di grafici interattivi e statsmodels per l’analisi di regressione lineare. Questa scelta rende possibile una trattazione completa del problema, sia dal punto di vista computazionale sia da quello statistico.
 
-Segue simulate_gambler, che costituisce la funzione centrale del notebook. Essa riceve in input il capitale iniziale, il capitale massimo, la probabilità di vincita e il numero massimo di partite. La funzione costruisce quindi, passo dopo passo, la storia del capitale. Se il giocatore vince, il capitale aumenta; in caso contrario, diminuisce. La simulazione termina quando il capitale raggiunge lo zero oppure il valore obiettivo.
+La funzione generate_random_number produce un numero casuale compreso tra 0 e 1 e, nel progetto, rappresenta la probabilità di vincita. In questo modo ogni simulazione può differire dalla precedente, perché l’evoluzione del sistema dipende da un elemento di casualità.
 
-Questo passaggio è particolarmente utile perché non conserva soltanto il risultato finale, ma l’intero percorso del capitale. In tal modo è possibile osservare l’evoluzione temporale del sistema e comprendere come due simulazioni possano avere lo stesso esito finale pur seguendo traiettorie molto diverse.
+La funzione simulate_gambler costituisce il nucleo del notebook. Riceve in input il capitale iniziale, il capitale massimo, la probabilità di vincita e il numero massimo di partite. La funzione costruisce la storia del capitale passo dopo passo: se il giocatore vince, il capitale aumenta; se perde, diminuisce. La simulazione termina quando il capitale raggiunge lo zero oppure il valore obiettivo.
 
-Un’ulteriore funzione fondamentale è theoretical_ruin_prob. In questo caso il notebook calcola la probabilità teorica di rovina mediante la formula classica del problema del gambler’s ruin. Quando la probabilità di vincita è pari a 0.5, la formula risulta più semplice; quando invece varia, viene applicata la formula generale che coinvolge p e q. Questa parte consente di disporre di un riferimento matematico con cui confrontare i risultati ottenuti dalla simulazione.
+Questo approccio consente di conservare non soltanto il risultato finale, ma l’intero percorso del capitale. In questo modo è possibile osservare l’evoluzione temporale del sistema e confrontare traiettorie diverse che possono avere lo stesso esito finale.
 
-Successivamente compare monte_carlo_simulation, che estende l’analisi a numerose simulazioni. Con il metodo Monte Carlo si ripete molte volte lo stesso esperimento per studiarne il comportamento medio. Per ogni simulazione, la probabilità p viene determinata nuovamente in modo casuale, così che ogni giocatore virtuale affronti una situazione distinta.
+La funzione theoretical_ruin_prob calcola la probabilità teorica di rovina utilizzando la formula classica del problema del gambler’s ruin. Quando la probabilità di vincita è pari a 0.5, la formula si semplifica; quando invece varia, viene applicata la formula generale che coinvolge p e q. Questa parte fornisce un riferimento matematico con cui confrontare i risultati simulati.
 
-A questo punto si ottiene un insieme di percorsi del capitale e una lista delle probabilità utilizzate. Su questi dati il notebook conta quante volte si verifica la rovina e quante volte si verifica il successo, ricavando così la probabilità empirica di rovina, cioè quella osservata direttamente nelle simulazioni.
+La funzione monte_carlo_simulation estende l’analisi a un gran numero di simulazioni. Il metodo Monte Carlo consiste nel ripetere molte volte lo stesso esperimento per osservare il comportamento medio del sistema. Per ogni simulazione, la probabilità p viene determinata in modo casuale, così che ogni giocatore virtuale affronti una situazione distinta.
 
-Parallelamente, viene calcolata anche la probabilità teorica di rovina per ciascun valore di p, per poi determinarne la media. Il confronto tra valore teorico e valore empirico costituisce uno degli aspetti più significativi del progetto, poiché consente di verificare la coerenza della simulazione rispetto al modello matematico.
+## Analisi dei risultati
 
-Successivamente, il notebook presenta anche i grafici dell’andamento del capitale per alcune simulazioni campione. Ogni linea rappresenta un giocatore diverso, e si osserva chiaramente come alcuni capitali crescano, altri diminuiscano rapidamente e altri ancora oscillino prima di giungere a una conclusione. La rappresentazione grafica rende il fenomeno molto più immediato e comprensibile.
+Dalle simulazioni si ottiene un insieme di percorsi del capitale e una lista delle probabilità utilizzate. Su questi dati il notebook calcola quante volte si verifica la rovina e quante volte si verifica il successo, ottenendo così la probabilità empirica di rovina, cioè quella osservata direttamente nelle simulazioni.
+
+Parallelamente viene calcolata anche la probabilità teorica di rovina per ciascun valore di p, per poi determinarne la media. Il confronto tra valore teorico e valore empirico rappresenta uno degli aspetti più significativi del progetto, perché permette di verificare la coerenza della simulazione rispetto al modello matematico.
+
+Il notebook mostra inoltre i grafici dell’andamento del capitale per alcune simulazioni campione. Ogni linea rappresenta un giocatore diverso e rende visibile come alcuni capitali crescano, altri diminuiscano rapidamente e altri ancora oscillino prima di arrivare a una conclusione. La rappresentazione grafica rende il fenomeno più immediato e comprensibile.
 
 Un altro aspetto rilevante è lo studio del tempo atteso per la rovina e per il successo. Il notebook calcola quante partite servono, in media, prima che si verifichi uno dei due eventi finali. Si tratta di un’informazione importante, perché non è sufficiente sapere se il giocatore vince o perde: è necessario anche valutare il tempo richiesto dal processo per concludersi.
 
-Il progetto esamina inoltre l’effetto del numero di simulazioni. Vengono considerati diversi valori di K e, per ciascuno di essi, viene ricalcolata la probabilità di rovina. Successivamente vengono determinati anche l’errore standard e l’intervallo di confidenza al 95 per cento. Il risultato evidenzia che, all’aumentare del numero di simulazioni, la stima diventa più affidabile.
+Il progetto esamina inoltre l’effetto del numero di simulazioni. Vengono considerati diversi valori di K e, per ciascuno, viene ricalcolata la probabilità di rovina. Successivamente vengono determinati anche l’errore standard e l’intervallo di confidenza al 95 per cento. Il risultato evidenzia che, all’aumentare del numero di simulazioni, la stima diventa più affidabile.
 
 È presente anche un’analisi delle distribuzioni delle medie campionarie. Il notebook estrae diversi campioni casuali dagli esiti delle simulazioni e calcola la media di ciascun campione. Le medie vengono poi rappresentate tramite istogrammi. Questa parte mostra un concetto statistico fondamentale: aumentando la dimensione del campione, le medie tendono a concentrarsi attorno a valori più stabili.
 
 Infine, viene studiata la relazione tra la probabilità di vincita p e la probabilità di rovina. Il notebook costruisce uno scatter plot e vi aggiunge una retta di regressione lineare, così da osservare l’eventuale presenza di una tendenza tra le due variabili. Dopo il grafico, viene eseguita anche una regressione con statsmodels, al fine di ottenere una lettura più precisa dal punto di vista statistico.
 
-In conclusione, il notebook non rappresenta soltanto una simulazione casuale, ma un vero e proprio studio statistico di un processo probabilistico. Il progetto parte da un modello, lo ripete numerose volte, confronta teoria e pratica, misura i tempi medi, analizza la stabilità delle stime e restituisce tutto attraverso una rappresentazione visiva.
+## Conclusione
+
+Il notebook non rappresenta soltanto una simulazione casuale, ma un vero e proprio studio statistico di un processo probabilistico. Il progetto parte da un modello, lo ripete numerose volte, confronta teoria e pratica, misura i tempi medi, analizza la stabilità delle stime e restituisce tutto attraverso una rappresentazione visiva.
 
 Il risultato finale è quindi il passaggio da un semplice gioco casuale a un’analisi completa del comportamento del capitale.
-
-Con questo concludiamo la presentazione. Grazie per l’attenzione.
