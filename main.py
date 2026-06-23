@@ -15,7 +15,7 @@ def play_game():
 
     while C > 0 and C < C_Max and partita < P_max:
         partita += 1
-        win_prob = generate_random_number()
+        win_prob = 0.7
         if random.random() < win_prob:
             C += δ
             print(f"Partita {partita}: Hai vinto! Capitale attuale: {C} (Vinto: {δ}) | Probabilità di vincita: {win_prob:.1f}")
